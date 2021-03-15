@@ -56,7 +56,9 @@ class TestCharacter(CharacterEntity):
         exity = entities[4][1]
         # if no defined target, set it to the exit
         if target is None:
-            target = (exitx, exity)
+            target = list((exitx, exity))
+        else:
+            target = list(target)
         # if no defined start, set it to the current position.
         if start is None:
             start = (self.x, self.y)
@@ -90,7 +92,7 @@ class TestCharacter(CharacterEntity):
             current = frontier.pop(0)
             closed[current[0][1]][current[0][0]] = True
             # check if we have reached the target yet
-            if(current[0][0], current[0][1]) == target:
+            if list((current[0][0], current[0][1])) == target:
                 break
             # Going through the child nodes of the current node.
             # A* algorithm will:
